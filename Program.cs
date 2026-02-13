@@ -208,17 +208,32 @@ public class Program
         var dataToCalc = (valueA: 10, valueB: 20);
 
         var resultCalcFixed = CalculateData(2, 3);
-        
+
         //Usint the tuple option 1 (pro mode)
-        var resultCalc = CalculateData(dataToCalc.valueA, dataToCalc.valueB);
+
+        //We can use the name of the tuple to declare the variable,
+        //option 1
+        (int sum , int product) resultCalc = CalculateData(dataToCalc.valueA, dataToCalc.valueB);
+
+        //We must use the name of the tuple to access to the values,
+        //option 2
+        var resultCalc2 = CalculateData(dataToCalc.valueA, dataToCalc.valueB);
 
         Console.WriteLine($"The sum is: {resultCalc.sum} and the product: {resultCalc.product}");
+        Console.WriteLine($"The sum is: {resultCalc2.sumaPro} and the product: {resultCalc2.productePro}");
 
         //Usint the tuple option 2 (pro mode ++)
+
+        //We can create a var type tuple and declare the variables with the name of the tuple, option 1
         var (sumNumbers, productNumbers) = CalculateData(dataToCalc.valueA, dataToCalc.valueB);
 
-        Console.WriteLine($"The sum is: {sumNumbers} and the product: {productNumbers}");
+        //We can declare the type of the variables and declare them with the name of the tuple, option 2
+        (int sumNumbers2, int productNumbers2) = CalculateData(dataToCalc.valueA, dataToCalc.valueB);
 
+        //We can access directly to the values of the tuple with the return name of the method, option 3
+        Console.WriteLine($"The sum is: {CalculateData(dataToCalc.valueA, dataToCalc.valueB).sumaPro} and the product: {productNumbers}");
+
+        Console.WriteLine($"The sum is: {sumNumbers2} and the product: {productNumbers2}");
 
         //NEWIE MODE
         int sum = 0, product = 0;
@@ -256,7 +271,7 @@ public class Program
     }
 
     //PRO MODE
-    public static (int sum, int product) CalculateData(int a, int b)
+    public static (int sumaPro, int productePro) CalculateData(int a, int b)
     {
         return (a + b, a * b);
     }
